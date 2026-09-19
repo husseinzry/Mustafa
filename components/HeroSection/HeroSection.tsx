@@ -23,6 +23,37 @@ const SplitChars = ({ text, className, id }: { text: string; className?: string;
   );
 };
 
+// Browser auto-detection utility
+export const detectBrowserDevice = (): "mobile" | "desktop" => {
+  if (typeof window === "undefined") return "desktop";
+  const ua = navigator.userAgent || (window as any).opera || "";
+  const isMobileUA =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(
+      ua
+    );
+  const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  const isNarrow = window.innerWidth <= 1024;
+  return isMobileUA || (hasTouch && isNarrow) ? "mobile" : "desktop";
+};
+
+function subscribeDevice(callback: () => void) {
+  if (typeof window === "undefined") return () => {};
+  window.addEventListener("resize", callback);
+  return () => window.removeEventListener("resize", callback);
+}
+
+function getDeviceSnapshot(): "mobile" | "desktop" {
+  return detectBrowserDevice();
+}
+
+function getServerDeviceSnapshot(): "mobile" | "desktop" {
+  return "desktop";
+}
+
+export const useDeviceType = (): "mobile" | "desktop" => {
+  return React.useSyncExternalStore(subscribeDevice, getDeviceSnapshot, getServerDeviceSnapshot);
+};
+
 const HeroSection = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const imgRef = useRef<HTMLDivElement | null>(null);
@@ -34,9 +65,18 @@ const HeroSection = () => {
   const endLineRef = useRef<HTMLDivElement | null>(null);
   const parallaxInstanceRef = useRef<any>(null);
   const [loaderDone, setLoaderDone] = useState(false);
+  const deviceType = useDeviceType();
+
+  useEffect(() => {
+    document.documentElement.classList.remove("is-mobile-browser", "is-desktop-browser");
+    document.documentElement.classList.add(
+      deviceType === "mobile" ? "is-mobile-browser" : "is-desktop-browser"
+    );
+  }, [deviceType]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
     gsap.registerPlugin(ScrollTrigger);
     document.body.style.overflow = "hidden";
 
@@ -81,32 +121,48 @@ const HeroSection = () => {
     // Initialize parallax-js after reveal completes
     const initParallax = async () => {
       if (typeof window === "undefined" || !sectionRef.current) return;
-      const isTouch =
-        window.matchMedia("(hover: none), (pointer: coarse)").matches ||
-        window.innerWidth < 1024;
+      const isMobile = detectBrowserDevice() === "mobile";
       try {
         const mod = await import("parallax-js");
         const Parallax = mod.default || mod;
         if (!sectionRef.current) return;
-        parallaxInstanceRef.current = new Parallax(sectionRef.current, {
-          relativeInput: true,
-          hoverOnly: isTouch, // On mobile, avoid gyro tilts displacing the centered layout
-          selector: ".hero-layer",
-          scalarX: 2,
-          scalarY: 2,
-          limitX: isTouch ? 12 : false,
-          limitY: isTouch ? 12 : false,
-          frictionX: 0.1,
-          frictionY: 0.1,
-        });
+
+        if (parallaxInstanceRef.current) {
+          try {
+            parallaxInstanceRef.current.destroy();
+          } catch (e) {}
+          parallaxInstanceRef.current = null;
+        }
+
+        if (isMobile) {
+          // On mobile browser: lock parallax so phone gyroscope/tilt never displaces the centered portrait
+          parallaxInstanceRef.current = new Parallax(sectionRef.current, {
+            relativeInput: true,
+            hoverOnly: true,
+            selector: ".hero-layer",
+            scalarX: 0,
+            scalarY: 0,
+          });
+        } else {
+          // On desktop browser: smooth mouse cursor tracking
+          parallaxInstanceRef.current = new Parallax(sectionRef.current, {
+            relativeInput: true,
+            hoverOnly: true,
+            selector: ".hero-layer",
+            scalarX: 2,
+            scalarY: 2,
+            frictionX: 0.1,
+            frictionY: 0.1,
+          });
+        }
       } catch (err) {
         // Smooth fallback if parallax-js is unavailable
       }
     };
 
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const stroke1Width = isMobile ? "40vw" : "22vw";
-    const stroke2Width = isMobile ? "30vw" : "16vw";
+    const isMobile = detectBrowserDevice() === "mobile";
+    const stroke1Width = isMobile ? "34vw" : "22vw";
+    const stroke2Width = isMobile ? "28vw" : "16vw";
 
     const tl = gsap.timeline({
       onComplete: () => {
@@ -244,7 +300,12 @@ const HeroSection = () => {
       </div>
 
       {/* Hero — direct children of #hero-section are parallax layers */}
-      <div id="hero-section" ref={sectionRef}>
+      <div
+        id="hero-section"
+        ref={sectionRef}
+        className={deviceType === "mobile" ? "is-mobile-browser" : "is-desktop-browser"}
+        data-device={deviceType}
+      >
         {/* Animated fluid background */}
         <div id="hero-bg-fluid">
           <LiquidEther
@@ -274,18 +335,16 @@ const HeroSection = () => {
         </div>
 
         {/* Heading text (deepest, moves least) */}
-        <div className="hero-layer pointer-events-none" data-depth="0.10" style={{ zIndex: 5 }}>
-          <div id="hero-heading-wrap">
-            <div id="hero-heading" ref={headingRef}>
-              <SplitChars text="MUSTAFA" />
-            </div>
+        <div className="hero-layer" data-depth="0.10" style={{ zIndex: 5 }}>
+          <div id="hero-heading" ref={headingRef}>
+            <SplitChars text="MUSTAFA" />
           </div>
         </div>
 
         {/* Portrait image (foreground, moves more) */}
-        <div className="hero-layer pointer-events-none" data-depth="0.30" style={{ zIndex: 10 }}>
-          <div id="hero-img-wrap">
-            <div id="hero-img" ref={imgRef}>
+        <div className="hero-layer" data-depth="0.40" style={{ zIndex: 10 }}>
+          <div id="hero-img">
+            <div ref={imgRef} className="hero-img-inner">
               <img
                 src="/Portfolio_Img-4.png"
                 alt="Mustafa Ali"

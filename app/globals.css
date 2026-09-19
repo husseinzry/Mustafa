@@ -261,40 +261,27 @@ html {
   z-index: 20;
 }
 
-#hero-heading-wrap,
-#hero-img-wrap {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
 #hero-img {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 40px);
+  transform: translate(-50%, -50%);
+  width: 88vh;
+  height: 110vh;
   z-index: 10;
-  width: min(85vh, 85vw);
-  max-width: 580px;
-  height: auto;
-  max-height: 84vh;
-  aspect-ratio: 549 / 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   pointer-events: none;
-  user-select: none;
 }
 
-#hero-img img {
+.hero-img-inner {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+}
+
+.hero-img-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   pointer-events: none;
-  /* Slight optical adjustment to center the subject's face precisely */
-  transform: translateX(-2.5%);
 }
 
 #hero-stroke-1 {
@@ -368,7 +355,10 @@ html {
 
 #hero-heading {
   color: var(--color-text);
-  position: relative;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 22vw;
   font-family: var(--font-inter), 'Inter', sans-serif;
   z-index: 5;
@@ -378,9 +368,118 @@ html {
   pointer-events: none;
   white-space: nowrap;
   line-height: 0.9;
+}
+
+/* ── AUTO-DETECTED DESKTOP BROWSER EXPLICIT OVERRIDES ── */
+html.is-desktop-browser #hero-img,
+#hero-section.is-desktop-browser #hero-img {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 40px);
+  transform: translate(-50%, -50%);
+  width: 88vh;
+  height: 110vh;
+  max-width: none;
+  max-height: none;
+  aspect-ratio: auto;
+}
+
+html.is-desktop-browser .hero-img-inner img,
+#hero-section.is-desktop-browser .hero-img-inner img {
+  object-fit: cover;
+  transform: none;
+}
+
+html.is-desktop-browser #hero-heading,
+#hero-section.is-desktop-browser #hero-heading {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22vw;
+  letter-spacing: -0.07em;
+  white-space: nowrap;
+  line-height: 0.9;
+}
+
+html.is-desktop-browser #hero-stroke-1,
+#hero-section.is-desktop-browser #hero-stroke-1 {
+  top: 65%;
+  left: -2%;
+  transform: translateY(-50%);
+  width: 22vw;
+  height: 32vh;
+}
+
+html.is-desktop-browser #hero-stroke-2,
+#hero-section.is-desktop-browser #hero-stroke-2 {
+  top: 12%;
+  right: 0%;
+  transform: rotateY(180deg);
+  width: 16vw;
+  height: 26vh;
+}
+
+/* ── AUTO-DETECTED MOBILE BROWSER EXPLICIT OVERRIDES ── */
+html.is-mobile-browser #hero-img,
+#hero-section.is-mobile-browser #hero-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(84vw, 25rem);
+  max-width: 84vw;
+  height: auto;
+  aspect-ratio: 549 / 600;
+  max-height: 56vh;
+}
+
+html.is-mobile-browser .hero-img-inner,
+#hero-section.is-mobile-browser .hero-img-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+html.is-mobile-browser .hero-img-inner img,
+#hero-section.is-mobile-browser .hero-img-inner img {
+  object-fit: contain;
+  transform: translateX(-2%);
+}
+
+html.is-mobile-browser #hero-heading,
+#hero-section.is-mobile-browser #hero-heading {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  font-size: clamp(3rem, 16vw, 5.8rem);
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  white-space: nowrap;
   text-align: center;
-  user-select: none;
-  transform: translateY(-4%);
+}
+
+html.is-mobile-browser #hero-stroke-1,
+#hero-section.is-mobile-browser #hero-stroke-1 {
+  top: 68%;
+  left: 2%;
+  width: 34vw;
+  height: 18vh;
+}
+
+html.is-mobile-browser #hero-stroke-2,
+#hero-section.is-mobile-browser #hero-stroke-2 {
+  top: 14%;
+  right: 0%;
+  width: 28vw;
+  height: 16vh;
 }
 
 /* ── PROJECTS SECTION ── */
@@ -1156,38 +1255,37 @@ html {
   }
 
   #hero-img {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: min(84vw, 26rem);
     max-width: 84vw;
     height: auto;
-    max-height: 60vh;
+    aspect-ratio: 549 / 600;
+    max-height: 58vh;
   }
 
-  #hero-img img {
-    width: 100%;
-    height: 100%;
+  .hero-img-inner img {
     object-fit: contain;
-    transform: translateX(-2.5%);
+    transform: translateX(-2%);
   }
 
   #hero-heading {
-    position: relative;
-    top: auto;
-    left: auto;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0;
-    width: 92%;
+    width: auto;
     font-size: clamp(3.5rem, 15vw, 6.5rem);
     letter-spacing: -0.04em;
     line-height: 0.92;
     white-space: nowrap;
     text-align: center;
-    transform: translateY(-2%);
   }
 
   #hero-stroke-1 {
@@ -1344,18 +1442,20 @@ html {
 @media (max-width: 480px) {
   #hero-heading {
     font-size: clamp(3rem, 17vw, 5.2rem);
-    top: auto;
-    left: auto;
-    width: 95%;
-    transform: translateY(-2%);
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
   }
 
   #hero-img {
-    top: auto;
-    left: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: min(88vw, 22rem);
     max-width: 88vw;
     height: auto;
+    aspect-ratio: 549 / 600;
     max-height: 56vh;
   }
 
