@@ -5,7 +5,6 @@ import Image from "next/image";
 
 const FeaturedVideo = ({ refForward, ...props }: { refForward?: any; [key: string]: any }) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [imgSrc, setImgSrc] = useState<string>("/featured-portrait.jpg");
 
   const variants = {
     initial: { scale: 1, x: 0, y: 0 },
@@ -21,34 +20,6 @@ const FeaturedVideo = ({ refForward, ...props }: { refForward?: any; [key: strin
     setProgress(value);
   });
 
-  useEffect(() => {
-    // Check if user uploaded photo exists in public directory
-    const candidates = [
-      "/IMG_20260201_014714_949.jpg",
-      "/IMG_20260201_014714_949.jpeg",
-      "/IMG_20260201_014714_949.png",
-      "/img_20260201_014714_949.jpg",
-      "/new-portrait.jpg",
-      "/new-portrait.png",
-    ];
-
-    const checkCandidate = async () => {
-      for (const candidate of candidates) {
-        try {
-          const res = await fetch(candidate, { method: "HEAD" });
-          if (res.ok) {
-            setImgSrc(candidate);
-            return;
-          }
-        } catch {
-          // continue checking
-        }
-      }
-    };
-
-    checkCandidate();
-  }, []);
-
   return (
     <motion.div
       ref={ref}
@@ -59,7 +30,7 @@ const FeaturedVideo = ({ refForward, ...props }: { refForward?: any; [key: strin
       {...props}
     >
       <Image
-        src={imgSrc}
+        src="/featured-portrait.jpg"
         alt="Featured portrait of Mustafa Ali"
         fill
         priority
