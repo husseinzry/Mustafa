@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LiquidEther from "../LiquidEther/LiquidEther";
@@ -45,7 +44,7 @@ const HeroSection = () => {
 
     // Hide hero elements initially
     gsap.set(headingChars, { autoAlpha: 0, y: 100 });
-    if (imgRef.current) gsap.set(imgRef.current, { autoAlpha: 0, y: "50%", scale: 0.8 });
+    if (imgRef.current) gsap.set(imgRef.current, { autoAlpha: 0, y: 30, scale: 0.95 });
     if (stroke1Ref.current && stroke2Ref.current) {
       gsap.set([stroke1Ref.current, stroke2Ref.current], { autoAlpha: 0, width: "0%" });
     }
@@ -91,14 +90,14 @@ const HeroSection = () => {
         if (!sectionRef.current) return;
         parallaxInstanceRef.current = new Parallax(sectionRef.current, {
           relativeInput: true,
-          hoverOnly: !isTouch,
+          hoverOnly: isTouch, // On mobile, avoid gyro tilts displacing the centered layout
           selector: ".hero-layer",
-          scalarX: isTouch ? 2.5 : 2,
-          scalarY: isTouch ? 2.5 : 2,
-          frictionX: isTouch ? 0.15 : 0.1,
-          frictionY: isTouch ? 0.15 : 0.1,
-          limitX: isTouch ? 25 : false,
-          limitY: isTouch ? 20 : false,
+          scalarX: 2,
+          scalarY: 2,
+          limitX: isTouch ? 12 : false,
+          limitY: isTouch ? 12 : false,
+          frictionX: 0.1,
+          frictionY: 0.1,
         });
       } catch (err) {
         // Smooth fallback if parallax-js is unavailable
@@ -179,7 +178,7 @@ const HeroSection = () => {
       );
     }
 
-    // Image animation
+    // Image animation (smooth fade + slight rise into center)
     if (imgRef.current) {
       tl.to(
         imgRef.current,
@@ -187,10 +186,10 @@ const HeroSection = () => {
           autoAlpha: 1,
           y: 0,
           scale: 1,
-          duration: 1,
-          ease: "sine.out",
+          duration: 1.2,
+          ease: "power2.out",
         },
-        "anim+=4.2"
+        "anim+=4.0"
       );
     }
 
@@ -270,52 +269,36 @@ const HeroSection = () => {
         {/* Back stroke (behind heading) */}
         <div className="hero-layer" data-depth="0.20" style={{ zIndex: 4 }}>
           <div id="hero-stroke-2" ref={stroke2Ref}>
-            <Image
-              src="/Svg_Stroke.png"
-              alt=""
-              width={600}
-              height={300}
-              priority
-              className="w-full h-auto pointer-events-none select-none"
-              draggable={false}
-            />
+            <img src="/Svg_Stroke.png" alt="" draggable="false" />
           </div>
         </div>
 
         {/* Heading text (deepest, moves least) */}
-        <div className="hero-layer" data-depth="0.10" style={{ zIndex: 5 }}>
-          <div id="hero-heading" ref={headingRef}>
-            <SplitChars text="MUSTAFA" />
+        <div className="hero-layer pointer-events-none" data-depth="0.10" style={{ zIndex: 5 }}>
+          <div id="hero-heading-wrap">
+            <div id="hero-heading" ref={headingRef}>
+              <SplitChars text="MUSTAFA" />
+            </div>
           </div>
         </div>
 
         {/* Portrait image (foreground, moves more) */}
-        <div className="hero-layer" data-depth="0.50" style={{ zIndex: 10 }}>
-          <div id="hero-img" ref={imgRef}>
-            <Image
-              src="/Portfolio_Img-4.png"
-              alt="Mustafa Ali"
-              fill
-              priority
-              sizes="(max-width: 768px) 85vw, (max-width: 1200px) 60vw, 88vh"
-              className="object-cover pointer-events-none select-none"
-              draggable={false}
-            />
+        <div className="hero-layer pointer-events-none" data-depth="0.30" style={{ zIndex: 10 }}>
+          <div id="hero-img-wrap">
+            <div id="hero-img" ref={imgRef}>
+              <img
+                src="/Portfolio_Img-4.png"
+                alt="Mustafa Ali"
+                draggable="false"
+              />
+            </div>
           </div>
         </div>
 
         {/* Front stroke (top-most) */}
         <div className="hero-layer" data-depth="0.30" style={{ zIndex: 11 }}>
           <div id="hero-stroke-1" ref={stroke1Ref}>
-            <Image
-              src="/Svg_Stroke.png"
-              alt=""
-              width={600}
-              height={300}
-              priority
-              className="w-full h-auto pointer-events-none select-none"
-              draggable={false}
-            />
+            <img src="/Svg_Stroke.png" alt="" draggable="false" />
           </div>
         </div>
 

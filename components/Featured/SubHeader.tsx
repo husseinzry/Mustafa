@@ -22,19 +22,19 @@ const SERVICES = [
 
 const SubHeader = () => {
   return (
-    <div className="w-full flex flex-col items-start gap-6 md:gap-8">
+    <div className="relative md:absolute md:top-1/5 left-0 md:left-1/2 w-full md:-translate-x-1/2 md:mt-40 z-10 flex flex-col md:items-start items-center px-5 md:px-0">
       {/* Bio Paragraph */}
-      <div className="w-full text-base md:text-xl flex flex-col gap-3 md:gap-4 leading-relaxed text-left">
-        <p className="font-semibold text-xl sm:text-2xl md:text-3xl text-fg tracking-tight">
+      <div className="w-full md:w-1/2 text-base md:text-2xl flex flex-col gap-3 md:gap-4 leading-relaxed md:leading-snug text-center md:text-left">
+        <p className="font-semibold text-lg md:text-2xl text-fg">
           Mustafa Ali is a Dentist passionate about modern dentistry and high-precision digital dental design.
         </p>
-        <p className="text-fg-muted text-base sm:text-lg leading-relaxed">
+        <p className="text-fg-muted text-sm md:text-lg">
           Mastering Exocad CAD workflows and creating 3D designs with Blender, combined with deep clinical expertise in endodontics and root canal treatment.
         </p>
       </div>
 
       {/* Services / Expertise Grid */}
-      <div className="about-inline-services w-full mt-2 md:mt-4 h-auto">
+      <div className="about-inline-services w-full md:w-1/2 mt-8 md:mt-12 h-auto">
         <div className="about-inline-services__head">
           <span className="about-inline-services__label">EXPERTISE &amp; SERVICES</span>
         </div>
@@ -48,7 +48,7 @@ const SubHeader = () => {
         </div>
 
         {/* Bio Let's Connect Contact Strip */}
-        <div className="mt-8 pt-6 border-t border-theme-border flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs sm:text-sm">
+        <div className="mt-8 pt-6 border-t border-theme-border flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs md:text-sm">
           <div className="font-semibold uppercase tracking-widest text-fg-muted">
             Let&apos;s Connect
           </div>
@@ -57,23 +57,23 @@ const SubHeader = () => {
               href="https://instagram.com/m55d1"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center min-h-[44px] transition-colors hover:text-brblue font-medium"
+              className="transition-colors hover:text-brblue font-medium"
             >
-              Instagram: <span className="underline ml-1">@m55d1</span>
+              Instagram: <span className="underline">@m55d1</span>
             </a>
             <span className="text-fg-muted hidden sm:inline">•</span>
             <a
               href="tel:+9647713878750"
-              className="inline-flex items-center min-h-[44px] transition-colors hover:text-brblue font-medium"
+              className="transition-colors hover:text-brblue font-medium"
             >
-              Phone: <span className="underline ml-1">+964 771 387 8750</span>
+              Phone: <span className="underline">+964 771 387 8750</span>
             </a>
             <span className="text-fg-muted hidden sm:inline">•</span>
             <a
               href="mailto:fhfabadgshei@gmail.com"
-              className="inline-flex items-center min-h-[44px] transition-colors hover:text-brblue font-medium"
+              className="transition-colors hover:text-brblue font-medium"
             >
-              Email: <span className="underline ml-1">fhfabadgshei@gmail.com</span>
+              Email: <span className="underline">fhfabadgshei@gmail.com</span>
             </a>
           </div>
         </div>

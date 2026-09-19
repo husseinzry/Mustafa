@@ -116,8 +116,7 @@ const Contact = () => {
         </a>
 
         <a
-          id="ct-btn-call"
-          className="ct-btn-secondary"
+          id="ct-btn-secondary"
           href={`tel:${PHONE.replace(/\s+/g, '')}`}
         >
           <span>CALL: {PHONE}</span>
@@ -125,8 +124,7 @@ const Contact = () => {
         </a>
 
         <a
-          id="ct-btn-whatsapp"
-          className="ct-btn-secondary"
+          id="ct-btn-secondary"
           href={WHATSAPP_URL}
           target="_blank"
           rel="noreferrer"
@@ -136,8 +134,7 @@ const Contact = () => {
         </a>
 
         <a
-          id="ct-btn-instagram"
-          className="ct-btn-secondary"
+          id="ct-btn-secondary"
           href={INSTAGRAM_URL}
           target="_blank"
           rel="noreferrer"

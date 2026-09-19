@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: 'Mustafa Ali — Dentist & 3D Designer',
   description: 'Portfolio of Mustafa Ali: Dentist, Exocad Expert, 3D Designer, and Endodontics Specialist.',
   icons: {
-    icon: '/Portfolio_Img-4.png',
+    icon: '/icon.png',
   },
   openGraph: {
     title: 'Mustafa Ali — Dentist & 3D Designer',
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable} data-theme="light" suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
       </head>
       <body className={`${inter.className} antialiased`} suppressHydrationWarning>
