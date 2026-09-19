@@ -1,0 +1,393 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1600" width="1000" height="1600" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <!-- Mist fade: 100% opaque until Y=900, then smoothly fades out completely by Y=1550 -->
+    <linearGradient id="mistFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="72%" stop-color="#ffffff" stop-opacity="0.75" />
+      <stop offset="86%" stop-color="#ffffff" stop-opacity="0.3" />
+      <stop offset="96%" stop-color="#ffffff" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Deep silhouette shading with subtle photographic dark tones -->
+    <linearGradient id="headShading" x1="15%" y1="10%" x2="85%" y2="70%">
+      <stop offset="0%" stop-color="#191b24" />
+      <stop offset="25%" stop-color="#14151c" />
+      <stop offset="60%" stop-color="#0f1016" />
+      <stop offset="100%" stop-color="#08090d" />
+    </linearGradient>
+
+    <!-- Suit jacket dark wool fabric gradient -->
+    <linearGradient id="suitFabric" x1="30%" y1="0%" x2="70%" y2="100%">
+      <stop offset="0%" stop-color="#1e212b" />
+      <stop offset="40%" stop-color="#13141a" />
+      <stop offset="100%" stop-color="#090a0d" />
+    </linearGradient>
+
+    <!-- Crisp white dress shirt gradient -->
+    <linearGradient id="shirtWhite" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="65%" stop-color="#f5f7fa" />
+      <stop offset="100%" stop-color="#dde2ec" />
+    </linearGradient>
+
+    <!-- Glasses lens antireflective tint -->
+    <linearGradient id="lensReflect" x1="20%" y1="10%" x2="80%" y2="90%">
+      <stop offset="0%" stop-color="#a4b8dc" stop-opacity="0.3" />
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#323c52" stop-opacity="0.4" />
+    </linearGradient>
+
+    <!-- Soft glow filter for rim light -->
+    <filter id="rimGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <mask id="bottomMistMask">
+      <rect x="0" y="0" width="1000" height="1600" fill="url(#mistFade)" />
+    </mask>
+  </defs>
+
+  <g mask="url(#bottomMistMask)">
+    <!-- 1. Suit Jacket Main Silhouette (Chest, Back, Arm) -->
+    <path d="M 620 670
+             C 660 700, 710 740, 760 800
+             C 825 880, 880 980, 920 1100
+             C 955 1210, 975 1350, 980 1600
+             L 20 1600
+             C 25 1520, 45 1430, 75 1350
+             C 120 1240, 175 1130, 230 1040
+             C 270 970, 310 910, 335 860
+             C 355 825, 370 790, 385 750
+             L 470 680
+             C 520 670, 580 668, 620 670
+             Z"
+          fill="url(#suitFabric)" />
+
+    <!-- Suit Shoulder Seam & Back Depth -->
+    <path d="M 610 675
+             C 650 720, 680 790, 700 870
+             C 720 950, 725 1060, 725 1200
+             C 725 1340, 720 1480, 715 1600
+             L 750 1600
+             C 755 1460, 760 1320, 755 1190
+             C 750 1040, 740 930, 720 850
+             C 700 770, 665 710, 610 675
+             Z"
+          fill="#0a0b0e"
+          opacity="0.85" />
+
+    <!-- 2. Suit Jacket Lapel Left Side Overlay -->
+    <path d="M 385 750
+             C 375 780, 355 830, 330 890
+             C 295 970, 250 1070, 205 1190
+             C 160 1310, 120 1450, 95 1600
+             L 270 1600
+             C 295 1450, 340 1310, 385 1190
+             C 425 1070, 465 960, 490 870
+             C 505 820, 515 780, 520 745
+             L 440 755
+             Z"
+          fill="#111319" />
+
+    <!-- Lapel Notch Line & Shadow Fold -->
+    <path d="M 390 755
+             L 435 800
+             L 420 812
+             L 360 850"
+          fill="none"
+          stroke="#07080a"
+          stroke-width="3.5" />
+
+    <!-- 3. Crisp White Dress Shirt (Collar Wings & Throat Opening) -->
+    <!-- Collar Band Back -->
+    <path d="M 430 635
+             C 470 642, 510 650, 560 660
+             C 550 680, 530 700, 510 715
+             C 470 698, 440 670, 430 650
+             Z"
+          fill="#cbd2df" />
+
+    <!-- Left Shirt Collar Point (Sharp, Clean, Crisp White) -->
+    <path d="M 425 640
+             L 345 745
+             C 355 758, 380 765, 400 760
+             L 460 670
+             C 445 655, 435 645, 425 640
+             Z"
+          fill="url(#shirtWhite)" />
+
+    <!-- Right Shirt Collar Point (Crisp Pure White) -->
+    <path d="M 475 660
+             L 445 775
+             C 468 765, 495 740, 510 715
+             L 525 670
+             C 505 665, 490 660, 475 660
+             Z"
+          fill="#ffffff" />
+
+    <!-- Throat V-Neck Opening -->
+    <path d="M 430 670
+             L 395 765
+             C 412 785, 432 795, 448 775
+             L 470 740
+             C 450 715, 438 690, 430 670
+             Z"
+          fill="#15171e" />
+
+    <!-- Throat Depth Shadow -->
+    <path d="M 420 665
+             C 415 690, 405 725, 400 755
+             L 415 765
+             C 425 730, 435 698, 440 670
+             Z"
+          fill="#0a0c10"
+          opacity="0.8" />
+
+    <!-- 4. Head, Face, Beard & Hair Silhouette (Facing Left) -->
+    <path d="M 560 660
+             /* Back of neck - clean, strong line */
+             C 555 605, 550 545, 545 485
+             /* Nape of neck curving up to back of head */
+             C 585 445, 605 385, 598 315
+             /* Crown of head - wavy textured volume */
+             C 592 235, 560 165, 502 118
+             /* Top of head with natural wavy hair curls */
+             C 450 75, 380 62, 310 75
+             C 275 82, 242 98, 215 122
+             C 192 145, 178 175, 170 210
+             /* Forehead */
+             C 165 235, 160 262, 158 285
+             /* Brow ridge transition */
+             C 155 302, 148 318, 138 335
+             /* Nose bridge */
+             C 128 350, 116 362, 105 378
+             /* Nose slope */
+             C 92 395, 78 412, 70 426
+             /* Nose tip */
+             C 65 435, 68 442, 80 445
+             /* Nostril base */
+             C 95 448, 108 454, 112 462
+             /* Full trimmed mustache bristling slightly */
+             C 106 468, 96 476, 88 488
+             C 86 492, 92 496, 102 498
+             /* Lower lip and soul patch under lip */
+             C 95 510, 88 522, 85 536
+             /* Trimmed full beard extending around chin */
+             C 82 552, 85 570, 96 590
+             C 108 610, 132 626, 165 638
+             /* Trimmed beard along jawline */
+             C 205 650, 260 656, 320 652
+             C 360 648, 395 638, 425 640
+             /* Front of neck descending into open shirt collar */
+             C 375 640, 405 625, 425 640
+             Z"
+          fill="url(#headShading)" />
+
+    <!-- 5. Hair Curls & Texture on Crown & Back -->
+    <path d="M 215 122
+             C 225 105, 248 88, 278 78
+             C 320 62, 375 58, 430 60
+             C 485 62, 535 78, 570 110
+             C 595 135, 610 170, 615 210
+             C 600 190, 575 165, 538 150
+             C 490 130, 430 125, 375 135
+             C 320 145, 270 168, 230 200
+             C 215 212, 202 230, 195 250
+             C 188 215, 195 160, 215 122
+             Z"
+          fill="#1b1e28" />
+
+    <!-- Subtle curly hair texture wisps -->
+    <path d="M 235 110
+             C 260 92, 298 78, 345 70
+             C 392 62, 442 64, 490 75
+             C 538 88, 572 110, 592 140"
+          fill="none"
+          stroke="#3b4458"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          opacity="0.7" />
+
+    <!-- 6. Ear Anatomy in Profile (Natural Helix, Concha, Tragus) -->
+    <!-- Outer Helix -->
+    <path d="M 455 330
+             C 485 320, 515 340, 520 375
+             C 525 410, 515 442, 495 462
+             C 480 476, 465 480, 455 470
+             C 445 460, 450 435, 460 422
+             C 470 408, 475 385, 465 365
+             C 460 355, 450 345, 442 340
+             Z"
+          fill="#13151f" />
+    <!-- Inner Concha Shadow -->
+    <path d="M 470 380
+             C 480 390, 480 415, 470 430
+             C 462 435, 458 425, 460 410
+             C 462 395, 465 385, 470 380
+             Z"
+          fill="#08090d" />
+
+    <!-- 7. Modern Wireframe Eyeglasses (Profile View) -->
+    <!-- Lens Antireflective Shading -->
+    <path d="M 112 352
+             C 122 332, 150 322, 180 324
+             C 205 326, 222 342, 222 368
+             C 222 396, 202 418, 172 420
+             C 142 422, 118 408, 110 382
+             C 108 372, 108 362, 112 352
+             Z"
+          fill="url(#lensReflect)" />
+
+    <!-- Glasses Front Frame Rim -->
+    <path d="M 112 352
+             C 122 332, 150 322, 180 324
+             C 205 326, 222 342, 222 368
+             C 222 396, 202 418, 172 420
+             C 142 422, 118 408, 110 382
+             C 108 372, 108 362, 112 352
+             Z"
+          fill="none"
+          stroke="#323a4c"
+          stroke-width="5.5"
+          stroke-linejoin="round" />
+
+    <!-- Inner Rim Fine Detail -->
+    <path d="M 116 354
+             C 124 336, 150 328, 176 329
+             C 198 331, 215 345, 215 368
+             C 215 392, 198 412, 170 414
+             C 144 416, 122 404, 114 382
+             Z"
+          fill="none"
+          stroke="#687794"
+          stroke-width="1.2"
+          opacity="0.85" />
+
+    <!-- Glasses Nose Bridge -->
+    <path d="M 110 366
+             C 100 368, 92 373, 96 379
+             C 98 383, 104 381, 108 376"
+          fill="none"
+          stroke="#414c62"
+          stroke-width="4.5" />
+
+    <!-- Glasses Temple Arm (From frame back to ear) -->
+    <path d="M 218 358
+             C 275 352, 365 344, 455 338"
+          fill="none"
+          stroke="#3b4559"
+          stroke-width="5.2"
+          stroke-linecap="round" />
+
+    <!-- Temple Arm Metallic Top Highlight -->
+    <path d="M 222 356
+             L 450 336"
+          fill="none"
+          stroke="#8292b3"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          opacity="0.8" />
+
+    <!-- 8. Eye, Brow & Eyelash behind Lens -->
+    <path d="M 124 332
+             C 144 322, 172 322, 196 328
+             C 186 334, 162 332, 134 340
+             Z"
+          fill="#0b0c12" />
+    <path d="M 130 366
+             C 140 360, 154 362, 162 370
+             C 152 374, 138 375, 130 370
+             Z"
+          fill="#0c0e14" />
+    <circle cx="137" cy="367" r="2.2" fill="#586888" opacity="0.65" />
+
+    
+    <!-- 9. Trimmed Full Beard, Stubble & Mustache Contours -->
+    <!-- Dense beard base shading -->
+    <path d="M 88 488
+             C 86 492, 92 496, 102 498
+             C 95 510, 88 522, 85 536
+             C 82 552, 85 570, 96 590
+             C 108 610, 132 626, 165 638
+             C 205 650, 260 656, 320 652
+             C 340 650, 360 635, 380 610
+             C 410 560, 435 500, 445 440
+             C 430 430, 400 450, 370 480
+             C 320 525, 250 560, 180 565
+             C 140 568, 110 550, 100 520
+             C 92 505, 90 495, 88 488
+             Z"
+          fill="#06070a" />
+
+    <!-- Beard micro-texture along chin and jawline -->
+    <path d="M 86 540
+             C 83 555, 86 572, 98 592
+             C 112 612, 138 628, 172 640
+             C 212 652, 268 658, 330 654"
+          fill="none"
+          stroke="#2d3546"
+          stroke-width="3"
+          stroke-dasharray="2 4"
+          opacity="0.8" />
+
+    <!-- Sideburn connecting hair to beard in front of ear -->
+    <path d="M 435 320
+             L 445 440
+             C 435 442, 422 435, 420 415
+             L 415 340
+             Z"
+          fill="#08090e" />
+<!-- 10. Luminous Rim-Lighting Along the Entire Profile Contour -->
+    <!-- Nose, Lips, and Chin Rim-Light -->
+    <path d="M 158 285
+             C 155 302, 148 318, 138 335
+             C 128 350, 116 362, 105 378
+             C 92 395, 78 412, 70 426
+             C 65 435, 68 442, 80 445
+             C 90 448, 104 452, 112 458
+             C 108 468, 98 478, 92 488
+             C 88 496, 94 504, 104 507
+             C 98 518, 92 528, 90 542
+             C 88 556, 94 572, 106 585
+             C 118 598, 140 610, 168 618"
+          fill="none"
+          stroke="#ffffff"
+          stroke-width="2.6"
+          stroke-linecap="round"
+          opacity="0.88"
+          filter="url(#rimGlow)" />
+
+    <!-- Hair, Crown & Forehead Rim-Light -->
+    <path d="M 215 122
+             C 192 145, 178 175, 170 210
+             C 165 235, 160 262, 158 285"
+          fill="none"
+          stroke="#e2ebff"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          opacity="0.65" />
+
+    <!-- Shirt Collar Clean Rim Edge -->
+    <path d="M 345 745
+             L 425 640"
+          fill="none"
+          stroke="#ffffff"
+          stroke-width="2.4"
+          opacity="0.95" />
+
+    <!-- Suit Lapel Rim Light -->
+    <path d="M 345 745
+             C 328 805, 300 880, 260 970
+             C 220 1060, 180 1160, 140 1270"
+          fill="none"
+          stroke="#9bb1d8"
+          stroke-width="1.8"
+          opacity="0.45" />
+  </g>
+</svg>
