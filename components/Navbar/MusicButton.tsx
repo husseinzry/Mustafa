@@ -80,10 +80,10 @@ const ThemeButton = () => {
       type="button"
       onClick={toggleTheme}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      className="nav_btn_lg nav_btn_light flex items-center justify-center cursor-pointer transition-colors duration-200 hover:bg-theme-border"
+      className="nav_btn_lg nav_btn_light flex items-center justify-center cursor-pointer transition-colors duration-200 hover:bg-theme-border min-h-[44px] min-w-[44px] px-3 sm:px-5 py-2"
     >
       {theme === "dark" ? <SunIcon /> : <MoonIcon />}
-      <span>{theme === "dark" ? "LIGHT" : "DARK"}</span>
+      <span className="hidden xs:inline sm:inline">{theme === "dark" ? "LIGHT" : "DARK"}</span>
     </button>
   );
 };

@@ -62,13 +62,19 @@ export default function Home() {
 
           <div
             id="about"
-            className="h-auto md:h-[140vh] relative mt-16 md:mt-[10rem] flex flex-col md:block pb-16 md:pb-0 gap-8 md:gap-0"
+            className="relative w-full overflow-hidden mt-16 sm:mt-24 md:mt-32 pb-20 md:pb-32 px-5 sm:px-8 md:px-12 lg:px-20"
             ref={ref}
           >
             <Skiggle />
             <Header />
-            <FeaturedVideo refForward={ref} />
-            <SubHeader />
+            <div className="relative z-10 w-full mt-10 md:mt-16 lg:mt-20 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 lg:gap-16 items-start">
+              <div className="md:col-span-5 lg:col-span-5 flex justify-center md:justify-start">
+                <FeaturedVideo refForward={ref} />
+              </div>
+              <div className="md:col-span-7 lg:col-span-7">
+                <SubHeader />
+              </div>
+            </div>
           </div>
 
           <Projects />

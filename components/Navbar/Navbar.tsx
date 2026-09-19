@@ -134,32 +134,32 @@ function Navbar() {
           </nav>
 
           <div className="mt-auto pt-8 flex flex-col gap-3">
-            <p className="text-fg-muted text-xs tracking-[0.2em] uppercase font-semibold">Let&apos;s Connect</p>
+            <p className="text-fg-muted text-xs tracking-[0.15em] uppercase font-semibold">Let&apos;s Connect</p>
             <a
               href={`mailto:${EMAIL}`}
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-between bg-fg text-bg rounded-full px-5 py-3.5 text-xs tracking-[0.2em] font-semibold"
+              className="flex items-center justify-between gap-2 bg-fg text-bg rounded-full px-4 sm:px-5 py-3.5 text-xs tracking-wider font-semibold min-h-[44px]"
             >
-              <span>EMAIL: {EMAIL}</span>
-              <span aria-hidden="true">↗</span>
+              <span className="truncate">EMAIL: {EMAIL}</span>
+              <span aria-hidden="true" className="flex-shrink-0">↗</span>
             </a>
             <a
               href={`tel:${PHONE.replace(/\s+/g, '')}`}
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-between border-2 border-fg text-fg rounded-full px-5 py-3.5 text-xs tracking-[0.2em] font-semibold"
+              className="flex items-center justify-between gap-2 border-2 border-fg text-fg rounded-full px-4 sm:px-5 py-3.5 text-xs tracking-wider font-semibold min-h-[44px]"
             >
               <span>PHONE: {PHONE}</span>
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true" className="flex-shrink-0">↗</span>
             </a>
             <a
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noreferrer"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-between border-2 border-fg text-fg rounded-full px-5 py-3.5 text-xs tracking-[0.2em] font-semibold"
+              className="flex items-center justify-between gap-2 border-2 border-fg text-fg rounded-full px-4 sm:px-5 py-3.5 text-xs tracking-wider font-semibold min-h-[44px]"
             >
               <span>INSTAGRAM: @m55d1</span>
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true" className="flex-shrink-0">↗</span>
             </a>
           </div>
         </div>

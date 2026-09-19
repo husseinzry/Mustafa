@@ -16,9 +16,10 @@ const SmoothScroll = ({ children }: { children?: React.ReactNode }) => {
         window.innerWidth < 1024);
 
     const lenis = new Lenis({
-      duration: isTouch ? 1.0 : 1.5,
+      duration: isTouch ? 0.85 : 1.25,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      touchMultiplier: isTouch ? 1.5 : 0.25,
+      touchMultiplier: 1.0,
+      infinite: false,
     });
 
     if (typeof window !== "undefined") {

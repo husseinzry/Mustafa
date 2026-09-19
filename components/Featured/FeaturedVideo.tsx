@@ -25,8 +25,8 @@ const FeaturedVideo = ({ refForward, ...props }: { refForward?: any; [key: strin
       ref={ref}
       variants={variants}
       initial="initial"
-      animate={progress > 0.5 ? "animate" : "initial"}
-      className="relative md:absolute mx-auto md:mx-0 mt-4 md:mt-0 md:top-[55vh] md:left-20 md:translate-x-0 md:translate-y-0 z-30 w-[82vw] md:w-[40vw] max-w-[22rem] md:max-w-[856px] aspect-[3/4] md:aspect-[856/1024] overflow-hidden rounded-3xl shadow-2xl"
+      animate={progress > 0.4 ? "animate" : "initial"}
+      className="relative w-full max-w-[340px] sm:max-w-[400px] md:max-w-[460px] lg:max-w-[520px] aspect-[3/4] overflow-hidden rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl transition-shadow duration-300"
       {...props}
     >
       <Image
@@ -34,7 +34,7 @@ const FeaturedVideo = ({ refForward, ...props }: { refForward?: any; [key: strin
         alt="Featured portrait of Mustafa Ali"
         fill
         priority
-        sizes="(max-width: 768px) 80vw, 40vw"
+        sizes="(max-width: 640px) 90vw, (max-width: 768px) 70vw, (max-width: 1200px) 40vw, 520px"
         className="object-cover"
       />
     </motion.div>
