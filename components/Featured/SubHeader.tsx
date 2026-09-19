@@ -3,53 +3,71 @@ import React from "react";
 
 const SERVICES = [
   {
-    title: "Dentist",
-    body: "Passionate about modern dentistry.",
+    title: "Dentistry & Clinical Care",
+    body: "Passionate about modern digital dentistry, patient comfort, and comprehensive clinical care.",
   },
   {
-    title: "Exocad Expert",
-    body: "Digital dental design & CAD workflows.",
+    title: "Exocad CAD Workflows",
+    body: "Digital dental design, crowns, bridges, smile makeovers, and high-precision CAD workflows.",
   },
   {
-    title: "3D Designer",
-    body: "Creating 3D designs with Blender.",
+    title: "3D Dental Design",
+    body: "High-precision 3D designs, anatomical modeling, and aesthetic dental visualizations with Blender.",
   },
   {
     title: "Endodontics",
-    body: "Strong interest in endodontics and root canal treatment.",
+    body: "Deep clinical expertise in endodontics, root canal treatments, and restorative procedures.",
   },
 ];
 
 const SubHeader = () => {
   return (
-    <div className="relative md:absolute md:top-1/5 left-0 md:left-1/2 w-full md:-translate-x-1/2 md:mt-40 z-10 flex flex-col md:items-start items-center px-5 md:px-0">
-      {/* Bio Paragraph */}
-      <div className="w-full md:w-1/2 text-base md:text-2xl flex flex-col gap-3 md:gap-4 leading-relaxed md:leading-snug text-center md:text-left">
-        <p className="font-semibold text-lg md:text-2xl text-fg">
+    <div className="w-full flex flex-col justify-center">
+      {/* Bio Paragraphs matching Image 1 Reference */}
+      <div className="flex flex-col gap-4 text-left">
+        <p className="text-xl sm:text-2xl lg:text-[1.65rem] xl:text-[1.75rem] font-medium leading-[1.35] tracking-tight text-fg">
           Mustafa Ali is a Dentist passionate about modern dentistry and high-precision digital dental design.
         </p>
-        <p className="text-fg-muted text-sm md:text-lg">
-          Mastering Exocad CAD workflows and creating 3D designs with Blender, combined with deep clinical expertise in endodontics and root canal treatment.
+        <p className="text-base sm:text-lg lg:text-[1.125rem] leading-[1.6] text-fg-muted font-normal max-w-[62ch]">
+          He integrates Exocad CAD workflows and creates 3D designs with Blender, combined with deep clinical expertise in endodontics and root canal treatment.
         </p>
       </div>
 
-      {/* Services / Expertise Grid */}
-      <div className="about-inline-services w-full md:w-1/2 mt-8 md:mt-12 h-auto">
-        <div className="about-inline-services__head">
-          <span className="about-inline-services__label">EXPERTISE &amp; SERVICES</span>
-        </div>
-        <div className="about-inline-services__grid">
-          {SERVICES.map((service) => (
-            <article key={service.title} className="about-inline-services__item">
-              <h4 className="text-fg">{service.title}</h4>
-              <p className="text-fg-muted">{service.body}</p>
-            </article>
-          ))}
+      {/* Services Section matching Image 1 Reference */}
+      <div className="mt-8 lg:mt-12 w-full">
+        {/* Services Header */}
+        <div className="border-b border-theme-border pb-3 mb-4 sm:mb-6 flex items-center justify-between">
+          <span className="text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase text-fg">
+            SERVICES
+          </span>
         </div>
 
-        {/* Bio Let's Connect Contact Strip */}
-        <div className="mt-8 pt-6 border-t border-theme-border flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs md:text-sm">
-          <div className="font-semibold uppercase tracking-widest text-fg-muted">
+        {/* 2x2 Services Grid with dividers matching Image 1 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 border-b border-theme-border">
+          {SERVICES.map((service, index) => {
+            const isLeft = index % 2 === 0;
+            const isTop = index < 2;
+            return (
+              <article
+                key={service.title}
+                className={`py-5 sm:py-6 flex flex-col justify-start transition-colors duration-200 ${
+                  isLeft ? "sm:pr-8 sm:border-r border-theme-border" : "sm:pl-8"
+                } ${isTop ? "border-b border-theme-border" : ""}`}
+              >
+                <h4 className="text-base sm:text-lg lg:text-[1.15rem] font-semibold text-fg tracking-tight mb-2">
+                  {service.title}
+                </h4>
+                <p className="text-xs sm:text-sm lg:text-[0.925rem] text-fg-muted leading-relaxed">
+                  {service.body}
+                </p>
+              </article>
+            );
+          })}
+        </div>
+
+        {/* Let's Connect Contact Strip */}
+        <div className="mt-8 pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm">
+          <div className="font-semibold uppercase tracking-widest text-fg-muted text-[11px] sm:text-xs">
             Let&apos;s Connect
           </div>
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-fg">

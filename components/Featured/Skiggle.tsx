@@ -30,8 +30,10 @@ const Skiggle = () => {
 
   return (
     <svg
-      className="squigggle absolute top-[-10%] left-1/2 -translate-x-1/2 w-[120vw] h-full z-0"
+      className="squigggle absolute top-[-5%] left-1/2 -translate-x-1/2 w-[110vw] max-w-[1600px] h-[120%] z-0 pointer-events-none opacity-90"
       fill="none"
+      viewBox="0 0 1600 1400"
+      preserveAspectRatio="xMidYMid meet"
       xmlns="http://www.w3.org/2000/svg"
     >
       <motion.path

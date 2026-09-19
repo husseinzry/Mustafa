@@ -2,7 +2,6 @@
 
 import React, { Suspense, useRef, useEffect } from "react";
 import FeaturedVideo from "@/components/Featured/FeaturedVideo";
-import Header from "@/components/Featured/Header";
 import Skiggle from "@/components/Featured/Skiggle";
 import SubHeader from "@/components/Featured/SubHeader";
 import Navbar from "@/components/Navbar/Navbar";
@@ -62,13 +61,21 @@ export default function Home() {
 
           <div
             id="about"
-            className="h-auto md:h-[140vh] relative mt-16 md:mt-[10rem] flex flex-col md:block pb-16 md:pb-0 gap-8 md:gap-0"
+            className="relative w-full max-w-[1480px] mx-auto px-6 sm:px-10 lg:px-16 pt-16 md:pt-28 pb-20 md:pb-32 overflow-hidden"
             ref={ref}
           >
             <Skiggle />
-            <Header />
-            <FeaturedVideo refForward={ref} />
-            <SubHeader />
+            <div className="relative z-10 w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-14 xl:gap-20">
+              {/* Left Column: Portrait photo card matching reference */}
+              <div className="w-full lg:w-[42%] xl:w-[40%] shrink-0 flex justify-center lg:justify-start">
+                <FeaturedVideo refForward={ref} />
+              </div>
+
+              {/* Right Column: Bio text + SERVICES 2x2 grid matching reference */}
+              <div className="w-full lg:w-[58%] xl:w-[60%] flex flex-col justify-center">
+                <SubHeader />
+              </div>
+            </div>
           </div>
 
           <Projects />
