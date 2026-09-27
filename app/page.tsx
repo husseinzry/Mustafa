@@ -5,6 +5,7 @@ import FeaturedVideo from "@/components/Featured/FeaturedVideo";
 import Skiggle from "@/components/Featured/Skiggle";
 import SubHeader from "@/components/Featured/SubHeader";
 import Navbar from "@/components/Navbar/Navbar";
+import ReadingProgressBar from "@/components/ReadingProgressBar/ReadingProgressBar";
 import HeroSection from "@/components/HeroSection/HeroSection";
 import SmoothScroll from "@/components/SmoothScroll";
 import GradualBlur from "@/components/GradualBlur/GradualBlur";
@@ -56,6 +57,7 @@ export default function Home() {
         }
       >
         <div className="bg-bg text-fg min-h-screen w-full overflow-x-hidden">
+          <ReadingProgressBar />
           <Navbar />
           <HeroSection />
 

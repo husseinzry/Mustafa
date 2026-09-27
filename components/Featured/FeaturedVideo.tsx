@@ -26,7 +26,17 @@ const FeaturedVideo = ({ refForward, ...props }: { refForward?: any; [key: strin
         fill
         priority
         sizes="(max-width: 768px) 85vw, (max-width: 1200px) 42vw, 490px"
+        referrerPolicy="no-referrer"
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+      />
+      {/* Faded bottom vignette & subtle bottom border */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none z-10"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-accent/50 to-transparent pointer-events-none z-10"
       />
     </motion.div>
   );

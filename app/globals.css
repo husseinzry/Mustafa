@@ -275,6 +275,29 @@ html {
 .hero-img-inner {
   width: 100%;
   height: 100%;
+  position: relative;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 62%,
+    rgba(0, 0, 0, 0.88) 74%,
+    rgba(0, 0, 0, 0.5) 85%,
+    rgba(0, 0, 0, 0.15) 94%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 62%,
+    rgba(0, 0, 0, 0.88) 74%,
+    rgba(0, 0, 0, 0.5) 85%,
+    rgba(0, 0, 0, 0.15) 94%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 .hero-img-inner img {
@@ -282,6 +305,26 @@ html {
   height: 100%;
   object-fit: cover;
   pointer-events: none;
+}
+
+/* Faded bottom border with accent glow along the base of the image */
+.hero-img-faded-border {
+  position: absolute;
+  bottom: 0;
+  left: 6%;
+  right: 6%;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(74, 131, 255, 0.15) 15%,
+    rgba(200, 220, 255, 0.6) 50%,
+    rgba(74, 131, 255, 0.15) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 16px 2px rgba(74, 131, 255, 0.35);
+  pointer-events: none;
+  z-index: 12;
 }
 
 #hero-stroke-1 {
@@ -390,6 +433,11 @@ html.is-desktop-browser .hero-img-inner img,
   transform: none;
 }
 
+html.is-desktop-browser .hero-img-faded-border,
+#hero-section.is-desktop-browser .hero-img-faded-border {
+  bottom: 5vh;
+}
+
 html.is-desktop-browser #hero-heading,
 #hero-section.is-desktop-browser #hero-heading {
   position: absolute;
@@ -470,16 +518,20 @@ html.is-mobile-browser #hero-stroke-1,
 #hero-section.is-mobile-browser #hero-stroke-1 {
   top: 68%;
   left: 2%;
-  width: 34vw;
+  width: 32vw;
+  max-width: 140px;
   height: 18vh;
+  pointer-events: none;
 }
 
 html.is-mobile-browser #hero-stroke-2,
 #hero-section.is-mobile-browser #hero-stroke-2 {
-  top: 14%;
+  top: 20%;
   right: 0%;
-  width: 28vw;
+  width: 26vw;
+  max-width: 120px;
   height: 16vh;
+  pointer-events: none;
 }
 
 /* ── PROJECTS SECTION ── */
@@ -1317,131 +1369,137 @@ html.is-mobile-browser #hero-stroke-2,
     padding: 0 4vw;
   }
 
-  /* Contact section — tablet sizing */
+  /* Contact section — tablet/mobile sizing */
   #contact-section {
     height: auto;
-    min-height: 70vh;
-    padding: 2vw 5vw;
-    gap: 2.5vw;
+    min-height: 60vh;
+    padding: 10vw 5vw 8vw 5vw;
+    gap: 1.25rem;
   }
 
   #ct-eyebrow {
-    font-size: 2.8vw;
-    letter-spacing: 0.15em;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
     white-space: normal;
   }
 
   #ct-headline {
-    font-size: clamp(2.8rem, 18vw, 7rem);
-    margin: 1.5vw 0;
+    font-size: clamp(2.5rem, 14vw, 5.5rem);
+    margin: 0.5rem 0;
     white-space: normal;
+    line-height: 0.95;
   }
 
   #ct-email {
-    font-size: 3.2vw;
-    margin-top: 1.5vw;
+    font-size: clamp(0.9rem, 3.4vw, 1.2rem);
+    margin-top: 0.5rem;
+    word-break: break-all;
   }
 
   #ct-actions {
-    margin-top: 3vw;
-    gap: 2.5vw;
+    margin-top: 1.5rem;
+    gap: 0.75rem;
     flex-direction: column;
     width: 100%;
+    max-width: 380px;
   }
 
   #ct-btn,
   #ct-btn-secondary {
-    width: 80vw;
+    width: 100%;
     max-width: 100%;
     height: auto;
-    min-height: 56px;
-    padding: 18px 24px;
-    font-size: 3vw;
-    letter-spacing: 0.2em;
+    min-height: 48px;
+    padding: 12px 20px;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
   }
 
   #ct-btn svg,
   #ct-btn-secondary svg {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
   }
 
   /* Footer */
   #main-footer {
-    padding: 8vw 6vw 6vw 6vw;
+    padding: 10vw 6vw 6vw 6vw;
   }
 
   .footer-top {
     flex-direction: column;
-    gap: 8vw;
-    padding-bottom: 8vw;
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .footer-brand {
     width: 100%;
-    gap: 4vw;
+    gap: 1rem;
   }
 
   .f-logo {
-    font-size: 14vw;
-    line-height: 0.95;
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
+    line-height: 1;
   }
 
   .f-desc {
-    font-size: 4vw;
-    line-height: 1.5;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    max-width: 48ch;
   }
 
   .f-socials {
-    gap: 3vw;
-    margin-top: 3vw;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
   }
 
   .f-socials a {
-    width: 11vw;
-    height: 11vw;
-    min-width: 40px;
-    min-height: 40px;
-    max-width: 48px;
-    max-height: 48px;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+    max-width: 42px;
+    max-height: 42px;
   }
 
   .footer-links {
-    gap: 10vw;
+    gap: 2rem 3rem;
     flex-wrap: wrap;
     width: 100%;
   }
 
   .f-col {
-    gap: 3vw;
+    gap: 0.6rem;
+    min-width: 130px;
   }
 
   .f-col h3 {
-    font-size: 3.2vw;
-    margin-bottom: 2vw;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.5rem;
   }
 
   .f-col a {
-    font-size: 4vw;
+    font-size: 0.875rem;
   }
 
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
-    gap: 4vw;
-    padding-top: 6vw;
-    font-size: 3vw;
+    gap: 0.6rem;
+    padding-top: 1.5rem;
+    font-size: 0.75rem;
   }
 
   .footer-bottom-links {
-    gap: 4vw;
+    gap: 1rem;
     flex-wrap: wrap;
   }
 }
 
 @media (max-width: 480px) {
   #hero-heading {
-    font-size: clamp(3rem, 17vw, 5.2rem);
+    font-size: clamp(2.8rem, 15vw, 4.6rem);
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -1452,78 +1510,88 @@ html.is-mobile-browser #hero-stroke-2,
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: min(88vw, 22rem);
-    max-width: 88vw;
+    width: min(86vw, 20rem);
+    max-width: 86vw;
     height: auto;
     aspect-ratio: 549 / 600;
-    max-height: 56vh;
+    max-height: 52vh;
   }
 
   #hero-stroke-1 {
     top: 70%;
-    width: 32vw;
-    height: 16vh;
-  }
-
-  #hero-stroke-1 img {
-    width: 32vw;
+    width: 30vw;
+    max-width: 120px;
+    height: 15vh;
   }
 
   #hero-stroke-2 {
-    top: 12%;
-    width: 28vw;
+    top: 18%;
+    width: 24vw;
+    max-width: 100px;
     height: 14vh;
   }
 
-  #hero-stroke-2 img {
-    width: 28vw;
-  }
-
-  #ct-eyebrow {
-    font-size: 3.6vw;
-  }
-
   #ct-headline {
-    font-size: clamp(3rem, 26vw, 7rem);
+    font-size: clamp(2.4rem, 16vw, 4.2rem);
   }
 
   #ct-email {
-    font-size: 4vw;
+    font-size: 0.875rem;
     word-break: break-all;
     text-align: center;
   }
 
+  #ct-actions {
+    margin-top: 1.25rem;
+    gap: 0.625rem;
+  }
+
   #ct-btn,
   #ct-btn-secondary {
-    font-size: 3.6vw;
-    width: 86vw;
+    font-size: 0.75rem;
+    padding: 12px 18px;
+    min-height: 46px;
   }
 
   .f-logo {
-    font-size: 16vw;
+    font-size: clamp(2rem, 9.5vw, 2.75rem);
   }
 
   .footer-bottom {
-    font-size: 3.4vw;
+    font-size: 0.75rem;
   }
 }
 
-/* ── ULTRA-MOBILE (≤ 480px) EXTRA POLISH ──
-   Small-phone adjustments that layer on top of the 768px rules above.
-   Touch targets stay ≥44px, long words break cleanly, and elements
-   never exceed the viewport width. */
+/* ── ULTRA-MOBILE (≤ 480px) EXTRA POLISH ── */
 @media (max-width: 480px) {
-  /* Projects — make long names wrap and keep the arrow from being
-     squished against the edge. Give each row a minimum touch height. */
+  /* Projects — comfortable padding and clean hierarchy on phones */
   #projects-section {
-    padding: 20vw 6vw 14vw 6vw;
+    padding: 12vw 5vw 10vw 5vw;
+  }
+
+  .pj-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .pj-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+  }
+
+  .pj-title {
+    font-size: clamp(2rem, 8.5vw, 2.75rem);
+    line-height: 1.05;
   }
 
   .pj-link {
-    gap: 3vw;
-    padding: 5vw 0;
-    min-height: 56px;
-    align-items: center;
+    gap: 0.75rem;
+    padding: 1.1rem 0;
+    min-height: 52px;
+    align-items: flex-start;
   }
 
   .pj-meta {
@@ -1532,72 +1600,59 @@ html.is-mobile-browser #hero-stroke-2,
   }
 
   .pj-name {
+    font-size: clamp(1.15rem, 5vw, 1.45rem);
     word-break: break-word;
     hyphens: auto;
   }
 
+  .pj-role {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    margin-top: 0.2rem;
+  }
+
+  .pj-note {
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    margin-top: 0.3rem;
+  }
+
   .pj-num {
-    min-width: 10vw;
+    font-size: 0.8125rem;
+    min-width: 1.8rem;
     flex-shrink: 0;
+    padding-top: 0.15rem;
   }
 
   .pj-arrow {
-    width: 9vw;
-    height: 9vw;
+    width: 20px;
+    height: 20px;
     flex-shrink: 0;
+    padding-top: 0.15rem;
   }
 
-  /* About inline services — compact padding on phones */
-  .about-inline-services__item {
-    padding: 5vw 0 !important;
-  }
-
-  .about-inline-services__item h4 {
-    font-size: 6.2vw;
-  }
-
-  .about-inline-services__item p {
-    font-size: 3.4vw;
-    margin-top: 2.5vw;
-  }
-
-  /* Contact spacing — give the stacked layout room to breathe */
+  /* Contact spacing — clean layout */
   #contact-section {
-    padding: 20vw 6vw 14vw 6vw;
+    padding: 12vw 5vw 10vw 5vw;
     min-height: auto;
-    gap: 4vw;
+    gap: 1.25rem;
   }
 
-  #ct-actions {
-    margin-top: 5vw;
-    gap: 3vw;
-  }
-
-  #ct-btn,
-  #ct-btn-secondary {
-    letter-spacing: 0.18em;
-    min-height: 54px;
-  }
-
-  /* Footer — tighten column gap so 2 columns fit per row on narrow
-     phones without becoming a single column that creates huge blank
-     vertical space */
+  /* Footer — tighten column gap so 2 columns fit cleanly */
   .footer-links {
-    gap: 8vw 6vw;
+    gap: 1.75rem 2rem;
   }
 
   .f-col h3 {
-    font-size: 3.6vw;
+    font-size: 0.75rem;
   }
 
   .f-col a {
-    font-size: 4.2vw;
+    font-size: 0.8125rem;
     word-break: break-word;
   }
 
-  /* Horizontal scroll pin section — height shrinks on tiny viewports so
-     there isn't a huge empty-looking pinned area while the headline
-     horizontally pans across. */
+  /* Horizontal scroll pin section */
   .Horizontal .hs-sticky {
     height: 70vh;
     min-height: 360px;
@@ -1608,27 +1663,26 @@ html.is-mobile-browser #hero-stroke-2,
   }
 }
 
-/* ── VERY SMALL PHONES (≤ 360px) ──
-   Extra safety net for iPhone SE-class widths so nothing overflows. */
+/* ── VERY SMALL PHONES (≤ 360px) ── */
 @media (max-width: 360px) {
   #hero-heading {
-    font-size: clamp(2.75rem, 17vw, 4.5rem);
+    font-size: clamp(2.4rem, 14vw, 3.8rem);
   }
 
   #ct-headline {
-    font-size: clamp(2.6rem, 24vw, 5.5rem);
+    font-size: clamp(2.2rem, 14vw, 3.5rem);
   }
 
   .pj-title {
-    font-size: 12vw;
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
   }
 
   .pj-name {
-    font-size: 8vw;
+    font-size: 1.15rem;
   }
 
   .f-logo {
-    font-size: 18vw;
+    font-size: 2rem;
   }
 }
 

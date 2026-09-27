@@ -351,6 +351,8 @@ const HeroSection = () => {
                 draggable="false"
               />
             </div>
+            {/* Faded bottom border */}
+            <div className="hero-img-faded-border" aria-hidden="true" />
           </div>
         </div>
 
